@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "XpVSURI9j4XOuo9iuABjl9DQFdT1GkqAhG4bj95/bv0g34xkiJpc4vfqVdDs4j8KjOj/erc6mdxmLvvZs6/uYg==",
+  "dgSpecHash": "vWO85r8gtQgYoCOv1ehmKTOY5dSZvGdv6PQVnlBtycp+0J3ekZHSQ5gNlk8J/y66YmuonZWfWkBuGarHLgYzTw==",
   "success": true,
-  "projectFilePath": "D:\\DEV\\DotNet\\dotnet8_hero\\workshop\\workshop.csproj",
+  "projectFilePath": "d:\\DEV\\DotNet\\dotnet8_hero\\workshop\\workshop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jiraphat.phr\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\jiraphat.phr\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\jiraphat.phr\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\jiraphat.phr\\.nuget\\packages\\mapster\\7.4.0\\mapster.7.4.0.nupkg.sha512",
+    "C:\\Users\\jiraphat.phr\\.nuget\\packages\\mapster.core\\1.2.1\\mapster.core.1.2.1.nupkg.sha512",
     "C:\\Users\\jiraphat.phr\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\jiraphat.phr\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
     "C:\\Users\\jiraphat.phr\\.nuget\\packages\\microsoft.codeanalysis.common\\4.5.0\\microsoft.codeanalysis.common.4.5.0.nupkg.sha512",
