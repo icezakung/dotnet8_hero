@@ -11,6 +11,8 @@ using workshop.Data;
 using workshop.DTOs.Product;
 using workshop.Entities;
 using Mapster;
+using workshop.Interfaces;
+using System.Reflection.Metadata.Ecma335;
 //using workshop.Models;
 
 namespace workshop.Controllers
@@ -19,41 +21,31 @@ namespace workshop.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        public DatabaseContext DatabaseContext { get; }
-        public ProductsController(DatabaseContext databaseContext)
+        public DatabaseContext DatabaseContext { get; set; }
+        public IProductService ProductService { get; }
+        public ProductsController(DatabaseContext databaseContext, IProductService productService)
         {
+            this.ProductService = productService;
             this.DatabaseContext = databaseContext;
         }
 
         [HttpGet("all")]
-        public ActionResult<IEnumerable<ProductResponse>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductResponse>>> GetProducts()
         {
-            var products = this.DatabaseContext.Products
-            .Include(p => p.Category)
-            .Select(ProductResponse.FormProduct)
-            .ToList();
-            return Ok(products);
+            return (await this.ProductService.FindAll()).Select(ProductResponse.FormProduct).ToList();
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetProductById(int id)
+        public async Task<ActionResult<ProductResponse>> GetProductById(int id)
         {
-            // var product = this.DatabaseContext.Products.Find(id);
-            // return Ok(product);
 
-            // var selectProduct = this.DatabaseContext.Products.Find(id);
-            // if (selectProduct != null)
-            // {
-            //     return Ok(ProductResponse.FormProduct(selectProduct));
-            // }
-            // return NotFound();
+            var product = (await this.ProductService.FindById(id));
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return ProductResponse.FormProduct(product);
 
-            var selectProduct = this.DatabaseContext.Products
-            .Include(p => p.Category)
-            .Select(ProductResponse.FormProduct)
-            .Where(p => p.ProductId == id).FirstOrDefault();
-
-            return Ok(selectProduct);
         }
 
         [HttpGet("search")]
@@ -76,8 +68,21 @@ namespace workshop.Controllers
             return StatusCode((int)HttpStatusCode.Created, product);
         }
 
- 
-        
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProductAsync(int id)
+        {
+            var product = await this.DatabaseContext.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            this.DatabaseContext.Products.Remove(product);
+            await this.DatabaseContext.SaveChangesAsync();
+            return NoContent();
+
+        }
+
+
 
 
     }

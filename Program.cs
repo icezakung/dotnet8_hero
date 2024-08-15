@@ -2,6 +2,8 @@
 using System.Collections.Immutable;
 using Microsoft.EntityFrameworkCore;
 using workshop.Data;
+using workshop.Interfaces;
+using workshop.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 // using Microsoft.EntityFrameworkCore;
 builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionSQLServer")));
+
+//Add Product Service
+builder.Services.AddTransient<IProductService, ProductService>();
 
 
 builder.Services.AddControllers();
